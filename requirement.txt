@@ -1,5 +1,6 @@
 transformers
 torch
-tensorflow>=2.0
+tensorflow
 sentencepiece
 uvicorn
+fastapi

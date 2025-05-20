@@ -19,7 +19,7 @@ DOCUMENT_TEXT"""
 document_text = "Our new applications currently utilize the updated DevXP Branching strategy, ... (your full doc here) ..."
 
 class ChatHistory(BaseModel):
-    messages: list  # List of {"role": ..., "content": ...}
+    messages: list
 
 @app.post("/chat")
 def chat(history: ChatHistory):
