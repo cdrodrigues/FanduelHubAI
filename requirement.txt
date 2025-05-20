@@ -1,0 +1,4 @@
+transformers
+torch
+tensorflow>=2.0
+sentencepiece
