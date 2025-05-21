@@ -1,4 +1,4 @@
-# FandulHubAI
+# FanduelHubAI
 
 This project demonstrates how to load and interact with a Large Language Model (LLM) using Hugging Face's `transformers` library in a Jupyter Notebook or via a REST API server. The example uses the Llama-3.2-3B-Instruct model and provides code and instructions for setting up prompts and running chat-based interactions.
 
