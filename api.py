@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from utils import load_docs_text
 
 app = FastAPI()
 
@@ -16,7 +17,7 @@ Documentation:
 
 DOCUMENT_TEXT"""
 
-document_text = "Our new applications currently utilize the updated DevXP Branching strategy, ... (your full doc here) ..."
+document_text = load_docs_text("docs")
 
 class ChatHistory(BaseModel):
     messages: list
@@ -27,6 +28,6 @@ def chat(history: ChatHistory):
     full_history = [system_message] + history.messages
     chat_template = tokenizer.apply_chat_template(full_history, tokenize=False)
     inputs = tokenizer(chat_template, return_tensors="pt")
-    outputs = model.generate(**inputs, max_new_tokens=128)
+    outputs = model.generate(**inputs, max_new_tokens=256)
     answer = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
     return {"answer": answer}
