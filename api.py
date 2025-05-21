@@ -2,8 +2,23 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import load_docs_text
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "https://localhost:4443",
+    "https://localhost",
+    "http://localhost:8080"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL_ID = "meta-llama/Llama-3.2-3B-Instruct"
 model = AutoModelForCausalLM.from_pretrained(MODEL_ID)
