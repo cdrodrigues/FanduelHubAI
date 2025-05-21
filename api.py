@@ -23,7 +23,9 @@ class ChatHistory(BaseModel):
 
 @app.post("/chat")
 def chat(history: ChatHistory):
-    chat_template = tokenizer.apply_chat_template(history.messages, tokenize=False)
+    system_message = {"role": "system", "content": SYSTEM_HEAD.replace("DOCUMENT_TEXT", document_text)}
+    full_history = [system_message] + history.messages
+    chat_template = tokenizer.apply_chat_template(full_history, tokenize=False)
     inputs = tokenizer(chat_template, return_tensors="pt")
     outputs = model.generate(**inputs, max_new_tokens=128)
     answer = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
