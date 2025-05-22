@@ -1,6 +1,7 @@
-transformers
-torch
-tensorflow
-sentencepiece
-uvicorn
 fastapi
+pydantic
+transformers
+sentence-transformers
+scikit-learn
+numpy
+uvicorn
