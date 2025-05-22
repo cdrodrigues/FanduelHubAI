@@ -1,119 +1,87 @@
-## OpenBet (OB) Risk Metrics
+# OpenBet (OB) Risk Metrics
 
-Here are the data that can be extracted from Openbet (OB) and visualised in the CRS UI (Customer Risk Settings UI)
-
-***Profits & Losses***
-
-*Bet Count*
-
-The total number of bets a customer has placed.
-
-*Gross Stake*
-
-The total amount of money wagered by the customer, regardless of bet outcome.
-
-*Settled Stake*
-
-The total amount staked on bets that have been resolved (i.e., not pending). Only settled bets can be used to calculate real profit/loss.
-
-*Trading Revenue*
-
-The net revenue earned from a customer.
-
-Trading Revenue = Gross Stake - Payouts to Customer
-
-A positive number = customer loss (platform gain), negative = customer profit (platform loss).
-
-*Trading Margin*
-
-The percentage of revenue retained from the settled stake.
-
-Formula:
-Trading Margin = (Trading Revenue / Settled Stake) × 100
-
-Indicates profitability of a customer from the platform's perspective.
+Structured data extracted from OpenBet (OB) for use in the CRS UI (Customer Risk Settings UI).
 
 ---
 
-***Other Metrics***
+## 📊 Profits & Losses
 
-*Expected Margin*
+### **Bet Count**
 
-The theoretical or statistical edge the platform has on the bets placed by a customer, based on expected outcomes (not actual results).
+- **Definition**: Total number of bets placed by the customer.
 
-Helps identify if a bettor consistently bets on high-margin or low-margin events.
+### **Gross Stake**
 
+- **Definition**: Total money wagered, regardless of outcome.
 
+### **Settled Stake**
 
-*MikePrice Stake*
+- **Definition**: Total stake from resolved bets (used in real P&L calculations).
 
-The total stake placed on events where MikePrice odds (a type of model or internal pricing system) were available or used.
+### **Trading Revenue**
 
-*MikePrice Exp Margin*
+- **Formula**:  
+  `Trading Revenue = Gross Stake - Payouts to Customer`
+- **Interpretation**:
+  - Positive = customer loss (platform gain)
+  - Negative = customer profit (platform loss)
 
-Expected margin on the MikePrice bets.
+### **Trading Margin**
 
-Reflects how valuable or risky a customer is when betting on internally priced markets.
-
-*BNN Shrewd Stake*
-
-The total stake placed on bets identified by a BNN (Bet Neural Network) model as "shrewd" or sharp (i.e., potentially profitable for the customer and risky for the book).
-
-A high value might signal a smart or professional bettor.
-
-*Average Stake*
-
-The average size of the customer's bets.
-
-Formula:
-Average Stake = Gross Stake / Bet Count
-
-*Straight Stake*
-
-Total stake on straight bets (i.e., single bets on one outcome, not parlays or multis).
-
-*OddsBoost Stake*
-
-Total stake on bets that were placed with an odds boost promotion (i.e., artificially inflated odds to attract betting activity).
+- **Formula**:  
+  `Trading Margin = (Trading Revenue / Settled Stake) × 100`
+- **Use**: Measures customer profitability for the platform.
 
 ---
 
-***Profitable or Risky from the sportsbook's perspective***
+## 📈 Other Metrics
 
-*Trading Margin*
+### **Expected Margin**
 
-Good (Safe):	10–30%
+- **Definition**: Theoretical platform edge based on expected outcomes (not actual results).
+- **Use**: Identifies betting behavior in high/low-margin markets.
 
-Warning / Bad (Risk): < 0% (customer is profitable)
+### **MikePrice Stake**
 
-*Expected Margin*
+- **Definition**: Stake on events priced using internal MikePrice model.
 
-Good (Safe): 	> 5%
+### **MikePrice Exp Margin**
 
-Warning / Bad (Risk): < 2% or negative
+- **Definition**: Expected margin from MikePrice bets.
+- **Use**: Gauges customer impact on internal markets.
 
-*BNN Shrewd Stake*
+### **BNN Shrewd Stake**
 
-Good (Safe): 	< 5% of total stake
+- **Definition**: Stake on bets flagged as "shrewd" by the BNN (Bet Neural Network) model.
+- **Use**: High value may indicate a smart/professional bettor.
 
-Warning / Bad (Risk): > 20% of total stake
+### **Average Stake**
 
-*OddsBoost Stake*
+- **Formula**:  
+  `Average Stake = Gross Stake / Bet Count`
+- **Use**: Measures bet sizing behavior.
 
-Good (Safe): 	< 10% of total stake
+### **Straight Stake**
 
-Warning / Bad (Risk): > 30% of total stake
+- **Definition**: Stake on single-outcome bets (non-multis).
 
-*MikePrice Exp Margin*|
+### **OddsBoost Stake**
 
-Good (Safe): 	> 5%
+- **Definition**: Stake on bets with promotional odds boosts.
 
-Warning / Bad (Risk): < 0%
+---
 
-*Average Stake*
+## 🚦 Risk Indicators (Platform Perspective)
 
-Good (Safe): €1–€25 (recs), up to €100 (VIP)
+| Metric                   | Good (Safe)                             | Warning / Bad (Risk)          |
+| ------------------------ | --------------------------------------- | ----------------------------- |
+| **Trading Margin**       | 10–30%                                  | < 0% (customer is profitable) |
+| **Expected Margin**      | > 5%                                    | < 2% or negative              |
+| **BNN Shrewd Stake**     | < 5% of total stake                     | > 20% of total stake          |
+| **OddsBoost Stake**      | < 10% of total stake                    | > 30% of total stake          |
+| **MikePrice Exp Margin** | > 5%                                    | < 0%                          |
+| **Average Stake**        | €1–€25 (recreational), up to €100 (VIP) | > €100 with low margin = risk |
 
-Warning / Bad (Risk): > €100 (with low margin = risk)
+---
 
-
+> ⚠️ Use these metrics to classify customers by profitability and risk level for targeted actions in risk management and segmentation models.

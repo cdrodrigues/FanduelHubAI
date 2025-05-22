@@ -1,38 +1,48 @@
-## OpenBet (OB) Features
+# OpenBet (OB) Feature Controls and System Behaviors
 
+---
 
+## 🔍 Bet Search
 
+- Search tool for locating recent or historical bets.
+- Filters:
+  - **Search Criteria**
+  - **Advanced Search**
+- Use: Narrow down and display customer bet results.
 
-## Bet Search
+---
 
-The Bet Search page gives you several search options. For example, you can search for the last 10 bets placed by a particular customer. It consists of two optional filter sections: Search criteria and Advanced search. Both these include various search filters which help the users narrow down the results, where the result of the search will be shown.
+## 🎚️ Stake Factor
 
-## Stake Factor
+- Each customer has a **stake multiplier**.
+- Multiplies the **max allowable bet** per customer.
+- Range: `0.01` to `999.99`.
 
-TI allocates each customer a stake factor. This is a multiplier that applies to all of their bets. It multiplies whatever the maximum allowable bet is set to, and the new value is the maximum bet for that customer. This stake factor controls (and personalises) how much an individual customer can wager on a bet.
+---
 
-Stake scale factors may range between 0.01 and 999.99 and are set per customer.
+## 📊 Stake Factor by Class
 
-## Stake Factor By Class
+- Class-based stake scaling per customer.
+- Example:
+  - Football = `0.5` (lower limit)
+  - Ice Hockey = `2.0` (higher limit)
+- Use: Limit high-skill customers per sport to control risk.
 
-TI permits an additional stake scale factor to be set per class per customer, so that a customer who does well when betting on football, but poorly when betting on ice hockey, can have a stake factor that reduces the amount they can wager on the football (e.g. 0.5) and increases the amount they can wager on ice hockey (e.g. 2.0).
+---
 
-By identifying customers who are skilled gamblers and setting their stake factor according to their ability, you may reduce your overall liability by ensuring that no large sums of money are placed on Selections from people likely to make winning bets.
+## 📈 Cumulative Stakes
 
-## Cumulative Stakes
+- Global setting (can be disabled).
+- Controls **max customer stake per Selection** per time window (e.g., 24h).
+- Includes stake factor in calculations.
+- Use case: Multi-day events (e.g., golf).
 
-TI has a global setting (that may also be configured off) to control the maximum amount of money that a customer may wager on a Selection in a given period (typically per 24 hours).
+---
 
-TI calculates how much money a given customer has wagered on a given Selection in the time period and disallows any bets that would take the total over the maximum bet for the Selection (after stake factor is taken into account). This is particularly useful for multi-day events such as golf, where a trader does not mind a customer repeatedly betting on the same Selection provided that they have time to establish a trading strategy for it.
+## 🚦 Bet Intercept (BI)
 
-## Bet Intercept (BI)
-
-Bet Intercept (BI) enables you to review bets that breach betting limits (generally maximum bet or payout limit) before they are placed.
-
-On review, you can decide to:
-
-»  accept the bet unconditionally
-
-»  decline the bet
-
-»  make the customer a counter-offer (with a different stake or price perhaps).
+- Manual review system for bets that **breach limits** (e.g., max stake or payout).
+- Actions on flagged bets:
+  - ✅ Accept
+  - ❌ Decline
+  - 🔁 Counter-offer (e.g., different stake or odds)
