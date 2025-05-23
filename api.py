@@ -51,10 +51,11 @@ def chat(history: ChatHistory):
     relevant_chunks = retrieve_relevant_chunks(user_query, doc_chunks, doc_embeddings, embedder, k=3)
     print(f"Relevant chunks: {relevant_chunks}")
     context = "\n\n".join(relevant_chunks)
-    system_message = {"role": "system", "content": SYSTEM_HEAD.replace("DOCUMENT_TEXT", context)}
-    full_history = [system_message] + history.messages
+    system_message = {"role": "system", "content": history.messages[0]['content'] + SYSTEM_HEAD.replace("DOCUMENT_TEXT", context)}
+    full_history = [system_message] + history.messages[1:]
+    print(f"Full history: {full_history}")
     chat_template = tokenizer.apply_chat_template(full_history, tokenize=False)
     inputs = tokenizer(chat_template, return_tensors="pt")
-    outputs = model.generate(**inputs, max_new_tokens=256)
+    outputs = model.generate(**inputs, max_new_tokens=1024, do_sample=True, temperature=0.7, top_p=0.9, top_k=50)
     answer = tokenizer.decode(outputs[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
     return {"answer": answer}
